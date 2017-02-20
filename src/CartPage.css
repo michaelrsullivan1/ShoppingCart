@@ -1,0 +1,24 @@
+.CartItem-count {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+}
+
+.CartItem-addOne, 
+.CartItem-removeOne {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	background: #fff;
+}
+
+.CartItem-addOne {
+	border-left: none;
+}
+
+.CartItem-removeOne {
+	border-right: none;
+}
+
+.cart-total {
+	text-align: right;
+}
+

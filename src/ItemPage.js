@@ -12,7 +12,6 @@ function ItemPage({ items, onAddToCart  }) {
 							className="Item-addToCart"
 							onClick={onAddToCart.bind(null, item)}>
 							Add to Cart
-							//Page 145
 						</button>
 					</Item>
 				</li>

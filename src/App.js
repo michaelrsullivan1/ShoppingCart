@@ -25,6 +25,16 @@ class App extends Component {
 		});	
 	}
 
+	handleRemoveOne = (item) => {
+		let index = this.state.cart.indexOf(item.id);
+		this.setState({
+			cart: [
+				...this.state.cart.slice(0, index),
+				...this.state.cart.slice(index + 1)
+			]
+		});
+	}
+
 	renderContent() {
 		switch(this.state.selectedTab)	{
 			default:
@@ -47,6 +57,7 @@ class App extends Component {
 			return itemCounts;	
 		}, {});
 
+
 		let cartItems = Object.keys(itemCounts).map(itemId => {
 			//Find the item by its id
 			var item = items.find(item =>
@@ -60,8 +71,22 @@ class App extends Component {
 			}
 		});
 
+
+		let cartTotal = this.state.cart.reduce((total, itemId) => {
+			var price = items.find(item =>
+				item.id === itemId
+			);
+			total = total + price.price;
+			return total;
+		}, 0);
+
 		return (
-			<CartPage items={cartItems} />
+			<CartPage 
+				items={cartItems} 
+				onAddOne={this.handleAddToCart}
+				onRemoveOne={this.handleRemoveOne}
+			       	cartTotal={cartTotal}	
+				/>
 		);
 	}
 
