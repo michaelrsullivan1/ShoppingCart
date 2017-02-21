@@ -38,3 +38,9 @@
 	border-bottom-color: #FFAA3F;
 }
 
+.App .cart-summary {
+	list-style: none;
+	display: inline-block;
+	float: right;
+}
+

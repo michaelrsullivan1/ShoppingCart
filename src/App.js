@@ -36,7 +36,8 @@ class App extends Component {
 		});
 	}
 
-	renderContent() {
+
+	renderContent(cartCount, cartTotal) {
 		switch(this.state.selectedTab)	{
 			default:
 				case 0: 
@@ -46,11 +47,11 @@ class App extends Component {
 						onAddToCart={this.handleAddToCart} />
 					);
 				case 1: 
-					return this.renderCart();
+					return this.renderCart(cartCount, cartTotal);
 		}
 	}
 
-	renderCart() {
+	renderCart(cartCount, cartTotal) {
 		//Count how many items are in the cart
 		let itemCounts = this.state.cart.reduce((itemCounts, itemId) => {
 			itemCounts[itemId] = itemCounts[itemId] || 0;
@@ -73,15 +74,6 @@ class App extends Component {
 		});
 
 
-		let cartTotal = this.state.cart.reduce((total, itemId) => {
-			var price = items.find(item =>
-				item.id === itemId
-			);
-			return total + price.price;
-		}, 0);
-
-		let cartCount = this.state.cart.length;
-
 		if (!cartCount) {
 			return <CartEmpty />
 		}
@@ -98,11 +90,22 @@ class App extends Component {
 
 	render() {
 		let { selectedTab } = this.state;
+
+		let cartTotal = this.state.cart.reduce((total, itemId) => {
+			var price = items.find(item =>
+				item.id === itemId
+			);
+			return total + price.price;
+		}, 0);
+
+		let cartCount = this.state.cart.length;
+
+
 		return (
 			<div className="App">
-				<Nav selectedTab={selectedTab} onTabChange={this.handleTabChanged}/>
+				<Nav selectedTab={selectedTab} onTabChange={this.handleTabChanged} cartCount={cartCount} cartTotal={cartTotal}/>
 				<main className="App-content">
-					{this.renderContent()}
+					{this.renderContent(cartCount, cartTotal)}
 				</main>
 			</div>
 		);
