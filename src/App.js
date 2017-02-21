@@ -4,6 +4,7 @@ import './App.css';
 import ItemPage from './ItemPage';
 import {items} from './static-data';
 import CartPage from './CartPage';
+import CartEmpty from './CartEmpty';
 
 class App extends Component {
 
@@ -76,9 +77,14 @@ class App extends Component {
 			var price = items.find(item =>
 				item.id === itemId
 			);
-			total = total + price.price;
-			return total;
+			return total + price.price;
 		}, 0);
+
+		let cartCount = this.state.cart.length;
+
+		if (!cartCount) {
+			return <CartEmpty />
+		}
 
 		return (
 			<CartPage 

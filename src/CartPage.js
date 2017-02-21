@@ -34,7 +34,7 @@ CartPage.propTypes = {
 	items: React.PropTypes.array.isRequired,
 	onAddOne: React.PropTypes.func.isRequired,
 	onRemoveOne: React.PropTypes.func.isRequired,
-	cartTotal: React.PropTypes.number.isRequired
+	cartTotal: React.PropTypes.number.isRequired,
 };
 
 export default CartPage;
